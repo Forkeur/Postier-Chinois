@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=CppApplication_2Gra
+PROJECTNAME=Graph
 
 # Active Configuration
 DEFAULTCONF=Debug

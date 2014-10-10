@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=MinGW-Windows
 CND_ARTIFACT_DIR_Debug=dist/Debug/MinGW-Windows
-CND_ARTIFACT_NAME_Debug=cppapplication_2gra
-CND_ARTIFACT_PATH_Debug=dist/Debug/MinGW-Windows/cppapplication_2gra
+CND_ARTIFACT_NAME_Debug=graph
+CND_ARTIFACT_PATH_Debug=dist/Debug/MinGW-Windows/graph
 CND_PACKAGE_DIR_Debug=dist/Debug/MinGW-Windows/package
-CND_PACKAGE_NAME_Debug=cppapplication2gra.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/MinGW-Windows/package/cppapplication2gra.tar
+CND_PACKAGE_NAME_Debug=graph.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/MinGW-Windows/package/graph.tar
 # Release configuration
 CND_PLATFORM_Release=MinGW-Windows
 CND_ARTIFACT_DIR_Release=dist/Release/MinGW-Windows
-CND_ARTIFACT_NAME_Release=cppapplication_2gra
-CND_ARTIFACT_PATH_Release=dist/Release/MinGW-Windows/cppapplication_2gra
+CND_ARTIFACT_NAME_Release=graph
+CND_ARTIFACT_PATH_Release=dist/Release/MinGW-Windows/graph
 CND_PACKAGE_DIR_Release=dist/Release/MinGW-Windows/package
-CND_PACKAGE_NAME_Release=cppapplication2gra.tar
-CND_PACKAGE_PATH_Release=dist/Release/MinGW-Windows/package/cppapplication2gra.tar
+CND_PACKAGE_NAME_Release=graph.tar
+CND_PACKAGE_PATH_Release=dist/Release/MinGW-Windows/package/graph.tar
 #
 # include compiler specific variables
 #
