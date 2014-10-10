@@ -25,13 +25,6 @@ typedef struct _TypVoisins
     struct _TypVoisins* voisinPrecedent;
 } TypVoisins;
 
-typedef struct
-{
-    bool estOriente : 1;
-    int nbMaxSommets;
-    TypVoisins* listesAdjacences[];
-} TypGraphe;
-
 int getSentinelValue();
 
 TypVoisins* newTypVoisins();
