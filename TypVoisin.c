@@ -24,7 +24,7 @@ bool isSentinelTypVoisins(TypVoisins* self)
 
 static TypVoisins* createSentinelTypVoisins()
 {
-    return createTypVoisins(SENTINEL_VALUE, 0);
+    return createTypVoisins(SENTINEL_VALUE, -1);
 }
 
 void deepDeleteTypVoisins(TypVoisins* self)
