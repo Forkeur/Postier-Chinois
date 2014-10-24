@@ -1,6 +1,6 @@
 /* 
  * File:   TypVoisin.h
- * Author: maxime
+ * Author: maxime & awaleh
  *
  * Created on 10 octobre 2014, 14:06
  */
