@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include "TypGraphe.h"
 
-
 TypGraphe* newTypGraphe(int nbMaxSommets, bool estOriente)
 {
     if (nbMaxSommets <= 0)
@@ -53,7 +52,6 @@ TypVoisins* sommetAdjacentTypGraphe(TypGraphe* self, voisinT from, voisinT to)
             : NULL;
 }
 
-
 errorcode insertionAreteTypGraphe(TypGraphe* self, voisinT from, voisinT to, dataT data)
 {
     if (!checkAccessListesAdjacences(self, from) || !checkAccessListesAdjacences(self, to))
@@ -88,7 +86,6 @@ errorcode insertionAreteTypGraphe(TypGraphe* self, voisinT from, voisinT to, dat
     return 0;
 }
 
-
 errorcode insertionSymetriqueAreteTypGraphe(TypGraphe* self, voisinT from, voisinT to, dataT data)
 {
     if (self->estOriente)
@@ -98,7 +95,6 @@ errorcode insertionSymetriqueAreteTypGraphe(TypGraphe* self, voisinT from, voisi
     }
     return insertionAreteTypGraphe(self, from, to, data);
 }
-
 
 errorcode _suppressionAreteTypGraphe(TypGraphe* self, voisinT from, voisinT to)
 {
@@ -122,12 +118,12 @@ errorcode suppressionAreteTypGraphe(TypGraphe* self, voisinT from, voisinT to)
         return -3;
     }
     int ret = _suppressionAreteTypGraphe(self, from, to);
-    if (!self->estOriente){
+    if (!self->estOriente)
+    {
         ret |= _suppressionAreteTypGraphe(self, to, from);
     }
     return ret;
 }
-
 
 errorcode suppressionSommetTypGraphe(TypGraphe* self, voisinT sommet)
 {
@@ -180,7 +176,7 @@ void sauvegardeTypGraphe(TypGraphe* g, FILE* fichier)
                         fprintf(fichier, ", ");
                     }
                     printf("(%d/%d)", it->voisin, it->data);
-                    
+
                 }
                 ajoutvirgule = it != g->listesAdjacences[i];
                 it = it->voisinSuivant;
