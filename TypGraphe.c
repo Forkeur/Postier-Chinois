@@ -175,7 +175,7 @@ void sauvegardeTypGraphe(TypGraphe* g, FILE* fichier)
                     {
                         fprintf(fichier, ", ");
                     }
-                    printf("(%d/%d)", it->voisin, it->data);
+                    fprintf(fichier, "(%d/%d)", it->voisin, it->data);
 
                 }
                 ajoutvirgule = it != g->listesAdjacences[i];

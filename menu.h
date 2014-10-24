@@ -9,7 +9,6 @@
 
 #include "TypVoisin.h"
 #include "TypGraphe.h"
-
 #ifdef	__cplusplus
 extern "C"
 {

@@ -5,6 +5,7 @@
 #include <math.h>
 
 #include "menu.h"
+#include "parser.h"
 
 char reponse, c, choix, QuitterSousMenu = 0, choix2, q, orienter;
 char nomfichier[PATH_MAX];
@@ -161,7 +162,7 @@ void MenuGraph()
 
             break;
         case 6:
-
+            quitter();
             break;
 
         default: printf("Veuillez saisir un chiffre correct");
@@ -208,13 +209,19 @@ void MenuPrincipal()
         printf("Donnez le nom du fichier à charger :\n");
         scanf(scanf_format_path_max(), &nomfichier);
         cleanup_stdin();
-        printf("\t Message: Chargement du graphe effectuer avec succes\n");
-
+        FILE* f = fopen(nomfichier, "r");
+        if (f){
+            graph = parse(f);
+            fclose(f);
+            if (graph){
+                 printf("\t Message: Chargement du graphe effectuer avec succes\n");
+            }
+        }else{
+            printf("Impossible d'ouvrir le fichier");
+        }
+        
+        
         MenuGraph();
-
-        // on test si le fichier existe à l'aide du fonction 
-
-        // si le fichier existe on procede à sa lecture.
 
         break;
 

@@ -14,13 +14,13 @@
 
 int main(int argc, char** argv)
 {
-    //MenuPrincipale();
-    FILE* f = fopen("toto.txt", "r");
+    MenuPrincipal();
+    /*FILE* f = fopen("toto.txt", "r");
     TypGraphe* g = parse(f);
     printf("%p", g);
     affichageTypGraphe(g);
     fclose(f);
-    quitter();
+    quitter();*/
     return (EXIT_SUCCESS);
 }
 
