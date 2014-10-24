@@ -10,7 +10,8 @@
 #include "stdbool.h"
 
 #ifdef	__cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 typedef int voisinT;
 typedef int dataT;
@@ -49,7 +50,7 @@ bool removeTypVoisins(TypVoisins* self);
 TypVoisins* searchForVoisin(TypVoisins* self, voisinT seek);
 TypVoisins* searchForData(TypVoisins* self, dataT seek);
 
-        
+
 
 
 #ifdef	__cplusplus

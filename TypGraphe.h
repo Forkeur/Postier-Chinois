@@ -10,9 +10,10 @@
 #include "TypVoisin.h"
 
 #ifdef	__cplusplus
-extern "C" {
+extern "C"
+{
 #endif
-    
+
 typedef struct
 {
     bool estOriente : 1;
@@ -21,7 +22,7 @@ typedef struct
 } TypGraphe;
 
 typedef int errorcode;
-    
+
 static const char* TYPGRAPH_ERRORS[] = {
     "wtf (What a Terrible Failure)",
     "impossible d'acceder au sommet",
