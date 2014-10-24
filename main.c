@@ -15,8 +15,10 @@
 int main(int argc, char** argv)
 {
     MenuPrincipal();
-    /*FILE* f = fopen("toto.txt", "r");
+    /*FILE* f = fopen("titi", "r");
+    
     TypGraphe* g = parse(f);
+    
     printf("%p", g);
     affichageTypGraphe(g);
     fclose(f);

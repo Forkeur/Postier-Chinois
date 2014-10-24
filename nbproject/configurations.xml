@@ -45,7 +45,7 @@
       </toolsSet>
       <compileType>
         <cTool>
-          <standard>10</standard>
+          <standard>3</standard>
         </cTool>
       </compileType>
       <item path="TypGraphe.c" ex="false" tool="0" flavor2="0">
@@ -78,6 +78,7 @@
       <compileType>
         <cTool>
           <developmentMode>5</developmentMode>
+          <standard>3</standard>
         </cTool>
         <ccTool>
           <developmentMode>5</developmentMode>

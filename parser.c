@@ -166,7 +166,7 @@ TypGraphe* parse(FILE* f)
                     return NULL;
                 }
                 err = insertionSommetTypGraphe(res, sommetParent);
-                if (err < 0)
+                if (err < 0 && err != -2)
                 {
                     handle_error_code(err);
                     return NULL;

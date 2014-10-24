@@ -215,9 +215,12 @@ void MenuPrincipal()
             fclose(f);
             if (graph){
                  printf("\t Message: Chargement du graphe effectuer avec succes\n");
+            }else{
+                quitter();
             }
         }else{
             printf("Impossible d'ouvrir le fichier");
+            quitter();
         }
         
         

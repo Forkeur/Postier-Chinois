@@ -45,7 +45,7 @@ static TypVoisins* _insertionAreteTypGraphe(TypGraphe* self, voisinT from,
     return emplaceBackTypVoisins(self->listesAdjacences[from], to, data);
 }
 
-TypVoisins* sommetAdjacentTypGraphe(TypGraphe* self, voisinT from, voisinT to)
+TypVoisins* getSommetAdjacentTypGraphe(TypGraphe* self, voisinT from, voisinT to)
 {
     return checkSommetExist(self, from)
             ? searchForVoisin(self->listesAdjacences[from], to)
