@@ -38,7 +38,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/TypGraphe.o \
 	${OBJECTDIR}/TypVoisin.o \
 	${OBJECTDIR}/main.o \
-	${OBJECTDIR}/menu.o
+	${OBJECTDIR}/menu.o \
+	${OBJECTDIR}/parser.o
 
 
 # C Compiler Flags
@@ -84,6 +85,11 @@ ${OBJECTDIR}/menu.o: menu.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/menu.o menu.c
+
+${OBJECTDIR}/parser.o: parser.c 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/parser.o parser.c
 
 # Subprojects
 .build-subprojects:

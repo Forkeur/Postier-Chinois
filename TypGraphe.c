@@ -15,12 +15,12 @@ TypGraphe* newTypGraphe(int nbMaxSommets, bool estOriente)
     return ret;
 }
 
-static bool checkAccessListesAdjacences(TypGraphe* self, voisinT i)
+bool checkAccessListesAdjacences(TypGraphe* self, voisinT i)
 {
     return self && i >= 0 && i < self->nbMaxSommets;
 }
 
-static bool checkSommetExist(TypGraphe* self, voisinT i)
+bool checkSommetExist(TypGraphe* self, voisinT i)
 {
     return checkAccessListesAdjacences(self, i) && self->listesAdjacences[i];
 }

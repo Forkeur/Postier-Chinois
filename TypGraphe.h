@@ -36,8 +36,8 @@ static const char* TYPGRAPH_ERRORS[] = {
 };
 
 TypGraphe* newTypGraphe(int nbMaxSommets, bool estOriente);
-static bool checkAccessListesAdjacences(TypGraphe* self, voisinT i);
-static bool checkSommetExist(TypGraphe* self, voisinT i);
+bool checkAccessListesAdjacences(TypGraphe* self, voisinT i);
+bool checkSommetExist(TypGraphe* self, voisinT i);
 
 errorcode insertionSommetTypGraphe(TypGraphe* self, voisinT numero);
 static TypVoisins* _insertionAreteTypGraphe(TypGraphe* self, voisinT from,

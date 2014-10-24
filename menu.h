@@ -18,9 +18,12 @@ extern "C"
 static void cleanup_stdin();
 static char* scanf_format_path_max();
 void handle_error_code(errorcode err);
+
 void MenuGraph();
-void quitter();
 void MenuPrincipale();
+
+void quitter();
+
 
 
 #ifdef	__cplusplus
