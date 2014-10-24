@@ -188,7 +188,7 @@ void quitter()
     exit(EXIT_SUCCESS);
 }
 
-void MenuPrincipale()
+void MenuPrincipal()
 {
     int scanfresult = -1;
 

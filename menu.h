@@ -20,7 +20,7 @@ static char* scanf_format_path_max();
 void handle_error_code(errorcode err);
 
 void MenuGraph();
-void MenuPrincipale();
+void MenuPrincipal();
 
 void quitter();
 
