@@ -151,6 +151,11 @@ void sauvegardeTypGraphe(TypGraphe* g, FILE* fichier);
  */
 void affichageTypGraphe(TypGraphe* g);
 
+/**
+ * Suppression du graph
+ * @param self
+ */
+void deleteTypGraphe(TypGraphe* self);
 
 #ifdef	__cplusplus
 }

@@ -63,7 +63,7 @@ errorcode insertionAreteTypGraphe(TypGraphe* self, voisinT from, voisinT to, dat
         return -3;
     }
 
-    if (sommetAdjacentTypGraphe(self, from, to))
+    if (getSommetAdjacentTypGraphe(self, from, to))
     {
         return -5;
     }
@@ -74,7 +74,7 @@ errorcode insertionAreteTypGraphe(TypGraphe* self, voisinT from, voisinT to, dat
     }
     if (!self->estOriente)
     {
-        if (sommetAdjacentTypGraphe(self, to, from))
+        if (getSommetAdjacentTypGraphe(self, to, from))
         {
             return -5;
         }
@@ -98,7 +98,7 @@ errorcode insertionSymetriqueAreteTypGraphe(TypGraphe* self, voisinT from, voisi
 
 errorcode _suppressionAreteTypGraphe(TypGraphe* self, voisinT from, voisinT to)
 {
-    TypVoisins* voisin = sommetAdjacentTypGraphe(self, from, to);
+    TypVoisins* voisin = getSommetAdjacentTypGraphe(self, from, to);
     if (!voisin)
     {
         return -6;
@@ -189,7 +189,18 @@ void sauvegardeTypGraphe(TypGraphe* g, FILE* fichier)
 
 }
 
-void affichageTypGraphe(TypGraphe* g)
+void affichageTypGraphe(TypGraphe* self)
 {
-    sauvegardeTypGraphe(g, stdout);
+    sauvegardeTypGraphe(self, stdout);
+}
+
+void deleteTypGraphe(TypGraphe* self)
+{
+    for(int i = 0; i < self->nbMaxSommets; ++i)
+    {
+        deepDeleteTypVoisins(self->listesAdjacences[i]);
+    }
+    
+    free(self->listesAdjacences);
+    free(self);
 }

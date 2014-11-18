@@ -18,13 +18,15 @@ static void cleanup_stdin()
     getchar();
 }
 
+static char* _scanf_format_path_max = NULL;
+
 /**
  * Permet d'eviter les "buffer overflow" lors des scanf pour les paths.
  * @return un string qui definit le format de scanf. (ie 1er argument de scanf)
  */
 static char* scanf_format_path_max()
 {
-    static char* _scanf_format_path_max = NULL; // initialisation de la variable ne se fait que la 1er fois que la fonction est lancÃ©e.
+    // initialisation de la variable ne se fait que la 1er fois que la fonction est lancÃ©e.
     if (_scanf_format_path_max == NULL)
     {
         _scanf_format_path_max = malloc((strlen("%s") + 1 + (int) log10(PATH_MAX) + 1) * sizeof (char));
@@ -180,12 +182,23 @@ void MenuGraph()
 
 }
 
-void quitter()
+static void cleanUpStatic()
 {
     if (graph)
     {
-        free(graph);
+        deleteTypGraphe(graph);
+        graph = NULL;
     }
+    if (_scanf_format_path_max)
+    {
+        free(_scanf_format_path_max);
+        _scanf_format_path_max = NULL;
+    }
+}
+
+void quitter()
+{
+    cleanUpStatic();
     exit(EXIT_SUCCESS);
 }
 
@@ -210,20 +223,26 @@ void MenuPrincipal()
         scanf(scanf_format_path_max(), &nomfichier);
         cleanup_stdin();
         FILE* f = fopen(nomfichier, "r");
-        if (f){
+        if (f)
+        {
             graph = parse(f);
             fclose(f);
-            if (graph){
-                 printf("\t Message: Chargement du graphe effectuer avec succes\n");
-            }else{
+            if (graph)
+            {
+                printf("\t Message: Chargement du graphe effectuer avec succes\n");
+            }
+            else
+            {
                 quitter();
             }
-        }else{
+        }
+        else
+        {
             printf("Impossible d'ouvrir le fichier");
             quitter();
         }
-        
-        
+
+
         MenuGraph();
 
         break;
