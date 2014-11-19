@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
+#include <linux/limits.h>
 #include <string.h>
 #include <math.h>
 
