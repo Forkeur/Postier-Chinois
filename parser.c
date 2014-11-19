@@ -158,8 +158,9 @@ TypGraphe* parse(FILE* f)
                 read = trimwhitespace(buf);
                 char* token = strtok(read, ":");
                 read = trimwhitespace(token);
-                sommetParent = strtol(read, NULL, 0);
-                if (!sommetParent)
+                char *endptr;
+                sommetParent = strtol(read, &endptr, 0);
+                if (read == endptr)
                 {
                     printf("erreur parsage line %u; '%s' attendu, on a : '%s'", line,
                            "CHIFFRE", read ? read : "EOF");
