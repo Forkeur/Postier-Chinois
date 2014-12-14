@@ -24,7 +24,7 @@ int main(int argc, char** argv)
     }
     affichageTypGraphe(g);
     struct exception ex = {};
-    vector v = ParcoursEulerien(g, &ex);
+    vector v = parcoursEulerien(g, &ex);
     if (ex.msg)
     {
         printf("error : %s", ex.msg);
@@ -56,7 +56,7 @@ int main(int argc, char** argv)
     CPP(g);
     affichageTypGraphe(g);
     ex.msg = NULL;
-    v = ParcoursEulerien(g, &ex);
+    v = parcoursEulerien(g, &ex);
     if (ex.msg)
     {
         printf("error : %s", ex.msg);

@@ -18,6 +18,9 @@ extern "C"
 {
 #endif
 
+// Nous considérons que le graphe de départ est correct.
+// Ainsi,vous n’avez pas à tester si le graphe est connexe, ni s’il est orienté ou non.
+    
 struct exception
 {
     char* msg;
@@ -26,14 +29,17 @@ struct exception
 
 typedef vector vertxvect;
 
-// Nous considérons que le graphe de départ est correct.
-// Ainsi,vous n’avez pas à tester si le graphe est connexe, ni s’il est orienté ou non.
-
-vertxvect ParcoursEulerien(TypGraphe* g, struct exception* error);
+vertxvect parcoursEulerien(TypGraphe* g, struct exception* error);
 
 vector listeCouplage(vector* sommetsImpairs);
 
-void CPP(TypGraphe* g);
+typedef struct FloyrdMarshallMatrixElement
+{
+    dataT dist;
+    int next;
+} FloyrdMarshallMatrixElementT;
+
+bool CPP(TypGraphe* g);
 
 
 #ifdef	__cplusplus

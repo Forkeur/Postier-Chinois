@@ -21,16 +21,10 @@ int countEdge(TypGraphe* self)
     return ret;
 }
 
-typedef struct FloyrdMarshallMatrixElement
-{
-    dataT dist;
-    int next;
-} FloyrdMarshallMatrixElementT;
-
 
 //based on http://en.wikipedia.org/wiki/Floyd-Warshall_algorithm#Path_reconstruction
 
-FloyrdMarshallMatrixElementT** FloydWarshallWithPathReconstruction(TypGraphe* self)
+FloyrdMarshallMatrixElementT** floydWarshallWithPathReconstruction(TypGraphe* self)
 {
     FloyrdMarshallMatrixElementT** ret = malloc(self->nbMaxSommets * sizeof (FloyrdMarshallMatrixElementT*));
 
@@ -79,6 +73,24 @@ FloyrdMarshallMatrixElementT** FloydWarshallWithPathReconstruction(TypGraphe* se
     }
 
     return ret;
+}
+
+vector floydWarshallPath(FloyrdMarshallMatrixElementT** matrix, int u, int v)
+{
+    if (matrix[u][v].next == -1)
+    {
+        return vector_empty();
+    }
+    vector path;
+    vector_init(&path, 10);
+    do
+    {
+        vector_push_back(&path, u);
+        u = matrix[u][v].next;
+    }
+    while (u != v);
+    vector_push_back(&path, v);
+    return path;
 }
 
 void deleteFloyrdMarshallComputedMatrix(FloyrdMarshallMatrixElementT** self, size_t size)
@@ -270,49 +282,14 @@ vertxvect subEulerianPath(const TypGraphe* g, int startVertex)
     return ret;
 }
 
-TypGraphe* createOddGraph(TypGraphe* g, vector* sommetImpair, FloyrdMarshallMatrixElementT** matrix)
+bool CPP(TypGraphe* g)
 {
-    TypGraphe* ret = newTypGraphe(g->nbMaxSommets, false);
-
-    for (int i = 0; i = sommetImpair->size; ++i)
+    if (!g)
     {
-        int edge = vector_get(sommetImpair, i);
-        for (int j = 0; j = sommetImpair->size; ++j)
-        {
-            if (i == j)
-            {
-                continue;
-            }
-            int edge2 = vector_get(sommetImpair, j);
-            int weigth = matrix[edge][edge2].dist;
-            insertionSymetriqueAreteTypGraphe(ret, edge, edge2, weigth);
-        }
+        return false;
     }
-    return ret;
-}
-
-vector FloydWarshallPath(FloyrdMarshallMatrixElementT** matrix, int u, int v)
-{
-    if (matrix[u][v].next == -1)
-    {
-        return vector_empty();
-    }
-    vector path;
-    vector_init(&path, 10);
-    do
-    {
-        vector_push_back(&path, u);
-        u = matrix[u][v].next;
-    }
-    while (u != v);
-    vector_push_back(&path, v);
-    return path;
-}
-
-void CPP(TypGraphe* g)
-{
     vector sommetImpair = oddVertices(g);
-    FloyrdMarshallMatrixElementT** matrix = FloydWarshallWithPathReconstruction(g);
+    FloyrdMarshallMatrixElementT** matrix = floydWarshallWithPathReconstruction(g);
 
 
     vector couplages = listeCouplage(&sommetImpair);
@@ -343,19 +320,19 @@ void CPP(TypGraphe* g)
 
     if (couplage == -1)
     {
-        //ERROR
+        return false;
     }
 
     vector couplagevect = {.data = couplages.data + couplage, .size = sommetImpair.size};
     for (int j = 0; j < couplagevect.size; j += 2)
     {
-        vector path = FloydWarshallPath(matrix, vector_get(&couplagevect, j), vector_get(&couplagevect, j + 1));
+        vector path = floydWarshallPath(matrix, vector_get(&couplagevect, j), vector_get(&couplagevect, j + 1));
         int from = vector_get(&path, 0);
         for (int i = 1; i < path.size; ++i)
         {
             int to = vector_get(&path, i);
             insertionAreteTypGraphe(g, from, to, matrix[from][to].dist);
-            insertionAreteTypGraphe(g, to, from, matrix[from][to].dist);
+            insertionAreteTypGraphe(g, to, from, matrix[to][from].dist);
             from = to;
         }
     }
@@ -364,6 +341,7 @@ void CPP(TypGraphe* g)
     deleteFloyrdMarshallComputedMatrix(matrix, g->nbMaxSommets);
     vector_delete(&sommetImpair);
     vector_delete(&couplages);
+    return true;
 }
 
 void _listeCouplage(vector* sommetsImpairs, vector* result, vector* accu)
@@ -403,7 +381,7 @@ vector listeCouplage(vector* sommetsImpairs)
     return ret;
 }
 
-vertxvect ParcoursEulerien(TypGraphe* g, struct exception* error)
+vertxvect parcoursEulerien(TypGraphe* g, struct exception* error)
 {
     vector sommetImpair = oddVertices(g);
     size_t sommetImpairSize = vector_size(&sommetImpair);
@@ -414,7 +392,7 @@ vertxvect ParcoursEulerien(TypGraphe* g, struct exception* error)
         if (error)
         {
             error->line = __LINE__;
-            error->msg = "can't resolve that";
+            error->msg = "can't resolve that, you should use the CPP algo.";
         }
         return vector_empty();
     }
