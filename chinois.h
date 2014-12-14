@@ -33,6 +33,8 @@ vertxvect ParcoursEulerien(TypGraphe* g, struct exception* error);
 
 vector listeCouplage(vector* sommetsImpairs);
 
+void CPP(TypGraphe* g);
+
 
 #ifdef	__cplusplus
 }

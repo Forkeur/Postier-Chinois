@@ -17,7 +17,7 @@
 int main(int argc, char** argv)
 {
     //MenuPrincipal();
-    TypGraphe* g = parse(fopen("complex", "r"));
+    TypGraphe* g = parse(fopen("complex3", "r"));
     if (!g)
     {
         return EXIT_FAILURE;
@@ -51,6 +51,22 @@ int main(int argc, char** argv)
     for (int i = 0; i < couplage.size; ++i)
     {
         printf("%d ", couplage.data[i]);
+    }
+    
+    CPP(g);
+    affichageTypGraphe(g);
+    ex.msg = NULL;
+    v = ParcoursEulerien(g, &ex);
+    if (ex.msg)
+    {
+        printf("error : %s", ex.msg);
+    }
+    else
+    {
+        for (int i = 0; i < v.size; ++i)
+        {
+            printf("%d ", v.data[i]);
+        }
     }
 
 

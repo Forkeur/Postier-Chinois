@@ -134,6 +134,10 @@ void MenuGraph()
             }
 
             handle_error_code(insertionAreteTypGraphe(graph, vp, vs, poids));
+            if (!graph->estOriente)
+            {
+                handle_error_code(insertionAreteTypGraphe(graph, vs, vp, poids));
+            }
 
             break;
         case 4:

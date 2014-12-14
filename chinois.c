@@ -108,7 +108,7 @@ void resetColor(TypGraphe* self)
     }
 }
 
-vector SommetImpair(TypGraphe* g)
+vector oddVertices(TypGraphe* g)
 {
     vector ret;
     vector_init(&ret, 10);
@@ -270,6 +270,102 @@ vertxvect subEulerianPath(const TypGraphe* g, int startVertex)
     return ret;
 }
 
+TypGraphe* createOddGraph(TypGraphe* g, vector* sommetImpair, FloyrdMarshallMatrixElementT** matrix)
+{
+    TypGraphe* ret = newTypGraphe(g->nbMaxSommets, false);
+
+    for (int i = 0; i = sommetImpair->size; ++i)
+    {
+        int edge = vector_get(sommetImpair, i);
+        for (int j = 0; j = sommetImpair->size; ++j)
+        {
+            if (i == j)
+            {
+                continue;
+            }
+            int edge2 = vector_get(sommetImpair, j);
+            int weigth = matrix[edge][edge2].dist;
+            insertionSymetriqueAreteTypGraphe(ret, edge, edge2, weigth);
+        }
+    }
+    return ret;
+}
+
+vector FloydWarshallPath(FloyrdMarshallMatrixElementT** matrix, int u, int v)
+{
+    if (matrix[u][v].next == -1)
+    {
+        return vector_empty();
+    }
+    vector path;
+    vector_init(&path, 10);
+    do
+    {
+        vector_push_back(&path, u);
+        u = matrix[u][v].next;
+    }
+    while (u != v);
+    vector_push_back(&path, v);
+    return path;
+}
+
+void CPP(TypGraphe* g)
+{
+    vector sommetImpair = oddVertices(g);
+    FloyrdMarshallMatrixElementT** matrix = FloydWarshallWithPathReconstruction(g);
+
+
+    vector couplages = listeCouplage(&sommetImpair);
+    //now find the shorstest path between vertices
+    int couplage = -1;
+    int minValue = INT_MAX;
+    for (int i = 0; i < couplages.size; i += sommetImpair.size)
+    {
+        int sum = 0;
+        for (int j = 0; j < sommetImpair.size; j += 2)
+        {
+            int left = vector_get(&couplages, i + j);
+            int right = vector_get(&couplages, i + j + 1);
+            if (matrix[left][right].dist == INT_MAX)
+            {
+                sum = INT_MAX;
+                continue;
+            }
+            sum += matrix[left][right].dist;
+        }
+
+        if (sum < minValue)
+        {
+            minValue = sum;
+            couplage = i;
+        }
+    }
+
+    if (couplage == -1)
+    {
+        //ERROR
+    }
+
+    vector couplagevect = {.data = couplages.data + couplage, .size = sommetImpair.size};
+    for (int j = 0; j < couplagevect.size; j += 2)
+    {
+        vector path = FloydWarshallPath(matrix, vector_get(&couplagevect, j), vector_get(&couplagevect, j + 1));
+        int from = vector_get(&path, 0);
+        for (int i = 1; i < path.size; ++i)
+        {
+            int to = vector_get(&path, i);
+            insertionAreteTypGraphe(g, from, to, matrix[from][to].dist);
+            insertionAreteTypGraphe(g, to, from, matrix[from][to].dist);
+            from = to;
+        }
+    }
+
+
+    deleteFloyrdMarshallComputedMatrix(matrix, g->nbMaxSommets);
+    vector_delete(&sommetImpair);
+    vector_delete(&couplages);
+}
+
 void _listeCouplage(vector* sommetsImpairs, vector* result, vector* accu)
 {
     if (!sommetsImpairs->size)
@@ -309,7 +405,7 @@ vector listeCouplage(vector* sommetsImpairs)
 
 vertxvect ParcoursEulerien(TypGraphe* g, struct exception* error)
 {
-    vector sommetImpair = SommetImpair(g);
+    vector sommetImpair = oddVertices(g);
     size_t sommetImpairSize = vector_size(&sommetImpair);
     if (sommetImpairSize > 2 || sommetImpairSize == 1)
     {
