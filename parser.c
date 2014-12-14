@@ -187,7 +187,7 @@ TypGraphe* parse(FILE* f)
                         insertionSommetTypGraphe(res, sommet);
                     }
                     err = insertionAreteTypGraphe(res, sommetParent, sommet, poids);
-                    if (err < 0)
+                    if (err < 0 && !err == -5)
                     {
                         handle_error_code(err);
                         return NULL;

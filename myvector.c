@@ -77,7 +77,7 @@ int vector_delete(vector* v)
 }
 
 
-inline size_t vector_size(vector* v)
+size_t vector_size(vector* v)
 {
     return v->size;
 }

@@ -64,16 +64,16 @@ errorcode insertionAreteTypGraphe(TypGraphe* self, voisinT from, voisinT to, dat
         return -3;
     }
 
-    if (getSommetAdjacentTypGraphe(self, from, to))
+    /**if (getSommetAdjacentTypGraphe(self, from, to))
     {
         return -5;
-    }
+    }*/
 
     if (!_insertionAreteTypGraphe(self, from, to, data))
     {
         return -4;
     }
-    if (!self->estOriente)
+    /*if (!self->estOriente)
     {
         if (getSommetAdjacentTypGraphe(self, to, from))
         {
@@ -83,7 +83,7 @@ errorcode insertionAreteTypGraphe(TypGraphe* self, voisinT from, voisinT to, dat
         {
             return -4;
         }
-    }
+    }*/
     return 0;
 }
 

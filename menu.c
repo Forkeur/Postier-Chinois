@@ -174,13 +174,6 @@ void MenuGraph()
         default: printf("Veuillez saisir un chiffre correct");
 
         }
-        do
-        {
-            printf("\n Voulez vous continuer ? ('o' pour continuer / 'n' pour quitter)\n");
-            QuitterSousMenu = getchar();
-            cleanup_stdin();
-        }
-        while (QuitterSousMenu != 'o' && QuitterSousMenu != 'n');
 
     }
 
