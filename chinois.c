@@ -335,6 +335,7 @@ bool CPP(TypGraphe* g)
             insertionAreteTypGraphe(g, to, from, matrix[to][from].dist);
             from = to;
         }
+        vector_delete(&path);
     }
 
 
