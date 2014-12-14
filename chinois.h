@@ -24,10 +24,14 @@ struct exception
     size_t line;
 };
 
+typedef vector vertxvect;
+
 // Nous considérons que le graphe de départ est correct.
 // Ainsi,vous n’avez pas à tester si le graphe est connexe, ni s’il est orienté ou non.
 
-vector ParcoursEulerien(TypGraphe* g, struct exception* error);
+vertxvect ParcoursEulerien(TypGraphe* g, struct exception* error);
+
+vector listeCouplage(vector* sommetsImpairs);
 
 
 #ifdef	__cplusplus

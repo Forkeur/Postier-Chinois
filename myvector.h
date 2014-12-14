@@ -21,6 +21,8 @@ int vector_get(vector* v, size_t index);
 int vector_pop(vector* v);
 int vector_delete(vector* v);
 size_t vector_size(vector* v);
+
+vector vector_empty();
 #ifdef	__cplusplus
 }
 #endif

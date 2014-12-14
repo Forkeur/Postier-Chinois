@@ -17,7 +17,7 @@
 int main(int argc, char** argv)
 {
     //MenuPrincipal();
-    TypGraphe* g = parse(fopen("complex2", "r"));
+    TypGraphe* g = parse(fopen("complex", "r"));
     if (!g)
     {
         return EXIT_FAILURE;
@@ -35,6 +35,22 @@ int main(int argc, char** argv)
         {
             printf("%d ", v.data[i]);
         }
+    }
+    
+    printf("\n");
+    vector v1;
+    vector_init(&v1, 10);
+    vector_push_back(&v1, 1);
+    vector_push_back(&v1, 2);
+    vector_push_back(&v1, 3);
+    vector_push_back(&v1, 4);
+    vector_push_back(&v1, 5);
+    vector_push_back(&v1, 6);
+
+    vector couplage = listeCouplage(&v1);
+    for (int i = 0; i < couplage.size; ++i)
+    {
+        printf("%d ", couplage.data[i]);
     }
 
 

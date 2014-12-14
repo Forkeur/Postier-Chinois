@@ -153,7 +153,7 @@ TypVoisins* getNextUnmarkedTypVoisin(TypVoisins* lst)
     return NULL;
 }
 
-int searchBackForVertx(vector* v, int searchFor)
+int searchBackForVertx(vertxvect* v, int searchFor)
 {
     for (size_t i = v->size - 1; i >= 0; i -= 2)
     {
@@ -165,7 +165,7 @@ int searchBackForVertx(vector* v, int searchFor)
     return -1;
 }
 
-int mergeVertxVector(vector* v, vector* sub)
+int mergeVertxVector(vertxvect* v, vertxvect* sub)
 {
     if (!sub || sub->size <= 1)
     {
@@ -180,7 +180,8 @@ int mergeVertxVector(vector* v, vector* sub)
     vector_resize(v, v->capacity + sub->size); // better perf
     for (int i = insertindex, j = 0; j < sub->size;)
     {
-        if (j < sub->size - 1){
+        if (j < sub->size - 1)
+        {
             vector_push_back(v, vector_get(v, i + 1));
         }
         v->data[i] = vector_get(sub, j);
@@ -191,7 +192,7 @@ int mergeVertxVector(vector* v, vector* sub)
 
 }
 
-TypVoisins* searchVoisinData(TypVoisins* self, voisinT seek, dataT data)
+TypVoisins* searchVoisinDataColor(TypVoisins* self, voisinT seek, dataT data)
 {
     if (self == NULL)
     {
@@ -200,7 +201,7 @@ TypVoisins* searchVoisinData(TypVoisins* self, voisinT seek, dataT data)
     TypVoisins* it = self;
     do
     {
-        if (it->voisin == seek && it->data == data)
+        if (it->voisin == seek && it->data == data && !it->color)
         {
             return it;
         }
@@ -210,10 +211,10 @@ TypVoisins* searchVoisinData(TypVoisins* self, voisinT seek, dataT data)
     return NULL;
 }
 
-vector subEulerianPath(const TypGraphe* g, int startVertex)
+vertxvect subEulerianPath(const TypGraphe* g, int startVertex)
 {
-    vector ret;
-    vector remaining;
+    vertxvect ret;
+    vertxvect remaining;
     vector_init(&remaining, 6);
     vector_init(&ret, 10);
 
@@ -233,10 +234,11 @@ vector subEulerianPath(const TypGraphe* g, int startVertex)
                 while (vector_size(&remaining))
                 {
                     int vertex2 = vector_pop(&remaining);
-                    vector sub = subEulerianPath(g, vertex2);
+                    //perform a recursive call
+                    vertxvect sub = subEulerianPath(g, vertex2);
+                    //then merge result into return value
                     mergeVertxVector(&ret, &sub);
                     vector_delete(&sub);
-
                 }
             }
             else
@@ -251,9 +253,9 @@ vector subEulerianPath(const TypGraphe* g, int startVertex)
             //increment color
             edge->color += 1;
             //increment target color too
-            TypVoisins* unmarkedVoisin = searchVoisinData(g->listesAdjacences[edge->voisin], vertex, edge->data);
+            TypVoisins* unmarkedVoisin = searchVoisinDataColor(g->listesAdjacences[edge->voisin], vertex, edge->data);
             unmarkedVoisin->color += 1;
-            
+
             // if there's remaining uncolored edge within vertex
             if (getNextUnmarkedTypVoisin(g->listesAdjacences[vertex]))
             {
@@ -262,22 +264,51 @@ vector subEulerianPath(const TypGraphe* g, int startVertex)
 
             vertex = edge->voisin;
         }
-
     }
 
     vector_delete(&remaining);
     return ret;
 }
 
-vector emptyVector()
+void _listeCouplage(vector* sommetsImpairs, vector* result, vector* accu)
 {
-    vector ret = {NULL, 0, 0};
+    if (!sommetsImpairs->size)
+    {
+        for (int i = 0; i < accu->size; ++i)
+        {
+            vector_push_back(result, vector_get(accu, i));
+        }
+    }
+    else
+    {
+        int x = vector_get(sommetsImpairs, 0);
+        for (int i = 1; i < sommetsImpairs->size; ++i)
+        {
+            int y = sommetsImpairs->data[i];
+            sommetsImpairs->data[i] = sommetsImpairs->data[1];
+            sommetsImpairs->data[1] = y;
+            vector_push_back(accu, x);
+            vector_push_back(accu, y);
+            vector subset = {.data = sommetsImpairs->data + 2, .size = sommetsImpairs->size - 2};
+            _listeCouplage(&subset, result, accu);
+            accu->size -= 2;
+        }
+    }
+}
+
+vector listeCouplage(vector* sommetsImpairs)
+{
+    vector accu;
+    vector_init(&accu, 10);
+    vector ret;
+    vector_init(&ret, 10);
+    _listeCouplage(sommetsImpairs, &ret, &accu);
+    vector_delete(&accu);
     return ret;
 }
 
-vector ParcoursEulerien(TypGraphe* g, struct exception* error)
+vertxvect ParcoursEulerien(TypGraphe* g, struct exception* error)
 {
-
     vector sommetImpair = SommetImpair(g);
     size_t sommetImpairSize = vector_size(&sommetImpair);
     if (sommetImpairSize > 2 || sommetImpairSize == 1)
@@ -289,7 +320,7 @@ vector ParcoursEulerien(TypGraphe* g, struct exception* error)
             error->line = __LINE__;
             error->msg = "can't resolve that";
         }
-        return emptyVector();
+        return vector_empty();
     }
 
     int startVertex = -1;
@@ -319,7 +350,7 @@ vector ParcoursEulerien(TypGraphe* g, struct exception* error)
             error->line = __LINE__;
             error->msg = "no vertex";
         }
-        return emptyVector();
+        return vector_empty();
     }
 
     resetColor(g);

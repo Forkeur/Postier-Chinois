@@ -81,3 +81,9 @@ size_t vector_size(vector* v)
 {
     return v->size;
 }
+
+vector vector_empty()
+{
+    vector ret = {NULL, 0, 0};
+    return ret;
+}
