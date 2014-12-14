@@ -21,6 +21,7 @@ typedef struct
     bool estOriente : 1;
     int nbMaxSommets;
     TypVoisins** listesAdjacences;
+    colorT* colors;
 } TypGraphe;
 
 typedef int errorcode;

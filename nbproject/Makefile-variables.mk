@@ -7,21 +7,21 @@ CND_BASEDIR=`pwd`
 CND_BUILDDIR=build
 CND_DISTDIR=dist
 # Debug configuration
-CND_PLATFORM_Debug=GNU-Linux-x86
-CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-Linux-x86
-CND_ARTIFACT_NAME_Debug=graph
-CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux-x86/graph
-CND_PACKAGE_DIR_Debug=dist/Debug/GNU-Linux-x86/package
-CND_PACKAGE_NAME_Debug=graph.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux-x86/package/graph.tar
+CND_PLATFORM_Debug=MinGW-Windows
+CND_ARTIFACT_DIR_Debug=dist/Debug/MinGW-Windows
+CND_ARTIFACT_NAME_Debug=postier-chinois
+CND_ARTIFACT_PATH_Debug=dist/Debug/MinGW-Windows/postier-chinois
+CND_PACKAGE_DIR_Debug=dist/Debug/MinGW-Windows/package
+CND_PACKAGE_NAME_Debug=postier-chinois.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/MinGW-Windows/package/postier-chinois.tar
 # Release configuration
-CND_PLATFORM_Release=GNU-Linux-x86
-CND_ARTIFACT_DIR_Release=dist/Release/GNU-Linux-x86
-CND_ARTIFACT_NAME_Release=graph
-CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux-x86/graph
-CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux-x86/package
-CND_PACKAGE_NAME_Release=graph.tar
-CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux-x86/package/graph.tar
+CND_PLATFORM_Release=MinGW-Windows
+CND_ARTIFACT_DIR_Release=dist/Release/MinGW-Windows
+CND_ARTIFACT_NAME_Release=postier-chinois
+CND_ARTIFACT_PATH_Release=dist/Release/MinGW-Windows/postier-chinois
+CND_PACKAGE_DIR_Release=dist/Release/MinGW-Windows/package
+CND_PACKAGE_NAME_Release=postier-chinois.tar
+CND_PACKAGE_PATH_Release=dist/Release/MinGW-Windows/package/postier-chinois.tar
 #
 # include compiler specific variables
 #

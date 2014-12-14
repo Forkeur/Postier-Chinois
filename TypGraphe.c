@@ -12,6 +12,7 @@ TypGraphe* newTypGraphe(int nbMaxSommets, bool estOriente)
     ret->estOriente = estOriente;
     ret->nbMaxSommets = nbMaxSommets;
     ret->listesAdjacences = calloc(nbMaxSommets, sizeof (TypVoisins*));
+    ret->colors = calloc(nbMaxSommets, sizeof (colorT));
     return ret;
 }
 
@@ -200,7 +201,7 @@ void deleteTypGraphe(TypGraphe* self)
     {
         deepDeleteTypVoisins(self->listesAdjacences[i]);
     }
-    
+    free(self->colors);
     free(self->listesAdjacences);
     free(self);
 }

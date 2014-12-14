@@ -7,6 +7,7 @@
       <itemPath>TypGraphe.h</itemPath>
       <itemPath>TypVoisin.h</itemPath>
       <itemPath>menu.h</itemPath>
+      <itemPath>myvector.h</itemPath>
       <itemPath>parser.h</itemPath>
       <itemPath>stdbool.h</itemPath>
     </logicalFolder>
@@ -19,8 +20,10 @@
                    projectFiles="true">
       <itemPath>TypGraphe.c</itemPath>
       <itemPath>TypVoisin.c</itemPath>
+      <itemPath>chinois.c</itemPath>
       <itemPath>main.c</itemPath>
       <itemPath>menu.c</itemPath>
+      <itemPath>myvector.c</itemPath>
       <itemPath>parser.c</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -56,11 +59,17 @@
       </item>
       <item path="TypVoisin.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="chinois.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="main.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="menu.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="menu.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="myvector.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="myvector.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="parser.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -98,11 +107,17 @@
       </item>
       <item path="TypVoisin.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="chinois.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="main.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="menu.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="menu.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="myvector.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="myvector.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="parser.c" ex="false" tool="0" flavor2="0">
       </item>

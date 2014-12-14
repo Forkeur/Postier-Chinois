@@ -15,6 +15,7 @@ extern "C"
 #endif
 typedef int voisinT;
 typedef int dataT;
+typedef int colorT;
 
 /**
  * La valeur de la sentinel
@@ -25,6 +26,7 @@ typedef struct _TypVoisins
 {
     voisinT voisin;
     dataT data;
+    colorT color;
     struct _TypVoisins* voisinSuivant;
     struct _TypVoisins* voisinPrecedent;
 } TypVoisins;

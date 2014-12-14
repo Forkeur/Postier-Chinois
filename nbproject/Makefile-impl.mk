@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=graph
+PROJECTNAME=Postier-Chinois
 
 # Active Configuration
 DEFAULTCONF=Debug
